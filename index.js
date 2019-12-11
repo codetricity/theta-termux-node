@@ -1,10 +1,25 @@
 const express = require("express");
 const request = require("request");
 const bodyParser = require("body-parser");
+const ip = require("ip");
+const url = require("url");
+const ejs = require('ejs');
 
 const app = express();
 
+const ipAddress = ip.address();
+
+let clientMode = false;
+
+if (ipAddress == "192.168.1.1") {
+    clientMode = false;
+} else {
+    clientMode = true;
+}
+
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.set('view engine', 'ejs');
 
 app.get("/", (req, res)=> {
   res.sendFile(__dirname + "/index.html");
@@ -42,7 +57,7 @@ app.post("/listFiles", (req, res) => {
     headers: {
       'content-type': 'application/json;charset=utf-8'
     },
-    url: "http://127.0.0.1:8080/osc/commands/execute",
+    url: "http://localhost:8080/osc/commands/execute",
     method: "POST",
     json: {
       name: "camera.listFiles",
@@ -55,13 +70,24 @@ app.post("/listFiles", (req, res) => {
     }
   }, (error, response, body) => {
     
-    let secondImageUri = body.results.entries[1].fileUrl;
-    console.log("first image uri = " + secondImageUri);
-    let webPage = "<h1>Body of response</h1>" + "<pre>" +
-      JSON.stringify(body, null, 2) + "</pre> + <hr>" ;
-    webPage = webPage + "<img width='500' src='" + secondImageUri + "'>";
-    
-    res.send(webPage);
+      const localImageUri = body.results.entries[0].fileUrl;
+      const imageUrl = new URL(localImageUri);
+      const imagePath =  imageUrl.pathname;
+      console.log("first image path = " + imagePath);
+      console.log(ipAddress)
+    let webPage = JSON.stringify(body, null, 2) ;
+
+
+      imageUrl.host = ipAddress;
+      imageUrl.port = '80';
+
+
+      res.render('imageList', {
+	  webPage: webPage,
+	  imageUrl: imageUrl,
+	  clientMode: clientMode
+      } );
+
   });
 });
 
