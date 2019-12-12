@@ -10,3 +10,4 @@ See these articles:
 * [Use Termux on RICOH THETA](https://community.theta360.guide/t/easy-hacking-of-leds-and-camera-using-termux/5018)
 
 
+![Image Listing](doc/images/gui.png)
