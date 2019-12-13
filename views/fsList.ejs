@@ -2,11 +2,16 @@
 <h1>RICOH THETA Image Files Read from Camera Filesystem</h1>
 
 
-      <%      imageNames.forEach((imageName) => {   %>
-      <img width="300" src="/100RICOH/<%= imageName %>" >
+<div class = "row">
 
-<br>
+      
+  <%      imageNames.forEach((imageName) => {   %>
+    <div class="col-md-4">
+      <img width="300" src="/100RICOH/<%= imageName %>" >
+    </div>
 <%      });   %>
 
+
+  </div>
 <%- include('snippets/footer'); %>
 
