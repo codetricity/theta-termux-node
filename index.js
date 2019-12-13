@@ -108,11 +108,15 @@ app.post("/listFilesCL", (req, res) => {
 		imageNames.push(item);
 	    }
 	});
-	imageNames.forEach((imageName) =>{
-	    console.log(imageName);
-	});
 	res.render('fsList', {imageNames: imageNames });
     })
+
+});
+
+app.get("/view/:imageName", (req, res) => {
+    const imageName = req.params.imageName;
+
+    res.render("imageDetails", {imageName: imageName});
 
 });
 

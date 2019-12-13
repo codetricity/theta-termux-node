@@ -1,0 +1,3 @@
+<%- include('snippets/header'); %>
+
+<%- include('snippets/footer'); %>
