@@ -4,8 +4,13 @@ const bodyParser = require("body-parser");
 const ip = require("ip");
 const url = require("url");
 const ejs = require('ejs');
+const fs = require('fs');
 
 const app = express();
+
+const ricohImageDir = "/sdcard/DCIM/100RICOH";
+app.use('/static', express.static(__dirname + '/public'));
+app.use('/100RICOH', express.static(ricohImageDir));
 
 const ipAddress = ip.address();
 
@@ -89,6 +94,16 @@ app.post("/listFiles", (req, res) => {
       } );
 
   });
+});
+
+// example of getting files from underlying OS
+
+app.post("/listFilesCL", (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	console.log(items);
+	res.send(items);
+    })
+
 });
 
 app.listen(3000, ()=> {
