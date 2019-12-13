@@ -5,6 +5,7 @@ const ip = require("ip");
 const url = require("url");
 const ejs = require('ejs');
 const fs = require('fs');
+const isImage = require('is-image');
 
 const app = express();
 
@@ -100,8 +101,17 @@ app.post("/listFiles", (req, res) => {
 
 app.post("/listFilesCL", (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
-	console.log(items);
-	res.send(items);
+
+	let imageNames = [];
+	items.forEach( (item) => {
+	    if (isImage(item)) {
+		imageNames.push(item);
+	    }
+	});
+	imageNames.forEach((imageName) =>{
+	    console.log(imageName);
+	});
+	res.render('fsList', {imageNames: imageNames });
     })
 
 });

@@ -1,0 +1,12 @@
+<%- include('snippets/header'); %>
+<h1>RICOH THETA Image Files Read from Camera Filesystem</h1>
+
+
+      <%      imageNames.forEach((imageName) => {   %>
+      <img width="300" src="/100RICOH/<%= imageName %>" >
+
+<br>
+<%      });   %>
+
+<%- include('snippets/footer'); %>
+
