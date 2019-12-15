@@ -6,6 +6,7 @@ const url = require("url");
 const ejs = require('ejs');
 const fs = require('fs');
 const isImage = require('is-image');
+const gm = require('gm');
 
 const app = express();
 
@@ -98,6 +99,7 @@ app.post("/listFiles", (req, res) => {
 });
 
 // example of getting files from underlying OS
+// full-size images
 
 app.post("/listFilesCL", (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
@@ -119,6 +121,17 @@ app.get("/view/:imageName", (req, res) => {
     res.render("imageDetails", {imageName: imageName});
 
 });
+
+app.post('/create-thumbnails', (req, res) => {
+    gm('/sdcard/DCIM/100RICOH/R0010097.JPG')
+	.resize(200, 100)
+	.noProfile()
+	.write(__dirname + '/public/thumbs/thumb.png', function(err) {
+	    if (!err) console.log('done');
+	});
+
+});
+
 
 app.listen(3000, ()=> {
   console.log("THETA node plug-in running on port 3000");
