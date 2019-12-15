@@ -8,6 +8,12 @@ See these articles:
 
 * [Setup Termux on RICOH THETA](https://community.theta360.guide/t/how-to-set-up-a-linux-environment-in-the-theta-to-control-the-camera-with-bash-ruby-python/5013/)
 * [Use Termux on RICOH THETA](https://community.theta360.guide/t/easy-hacking-of-leds-and-camera-using-termux/5018)
-
+* [Creating a WebUI with Node Running Inside the Camera](
+https://community.theta360.guide/t/creating-a-webui-with-node-running-inside-the-camera/5044)
 
 ![Image Listing](doc/images/gui.png)
+
+## Image Processing with gm
+
+The graphics processing is handled with GraphicsMagick.  See
+[gm](https://www.npmjs.com/package/gm) node module for more information.
