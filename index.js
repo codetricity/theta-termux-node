@@ -146,11 +146,11 @@ app.post('/create-thumbnails', (req, res) => {
 
 app.post('/reduce-quality', (req, res) => {
 
-    let thumbArray = [];
+    let imageArray = [];
     fs.readdir(ricohImageDir, (err, items) => {
 	items.forEach ((item) => {
 	    if (isImage(item)) {
-		thumbArray.push(item);
+		imageArray.push(item);
 		gm('/sdcard/DCIM/100RICOH/' + item)
 		.quality(30)
 		.noProfile()
