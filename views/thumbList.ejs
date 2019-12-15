@@ -1,0 +1,30 @@
+<%- include('snippets/header'); %>
+
+<style>
+.thumb-title {
+  font-size: .7rem;	     
+}
+</style>
+<h1>RICOH THETA thumbnails processed with GraphicsMagick</h1>
+
+
+<div class = "row">
+
+      
+  <%      thumbs.forEach((thumb) => {   %>
+  <div class="col-md-2">
+    <a href="/view/<%= thumb %>">
+    <div class="card shadow-sm"> 
+      <img class="card-img-top"  width="90%" src="/static/thumbs/<%= thumb %>" >
+      <div class="card-body">
+	<p class="card-title thumb-title"> <%= thumb %> </p> 
+      </div>
+    </div>
+    </a>
+  </div>
+<%      });   %>
+
+
+  </div>
+<%- include('snippets/footer'); %>
+

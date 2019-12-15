@@ -11,6 +11,7 @@ const gm = require('gm');
 const app = express();
 
 const ricohImageDir = "/sdcard/DCIM/100RICOH";
+const thumbDir = __dirname + '/public/thumbs';
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/100RICOH', express.static(ricohImageDir));
 
@@ -123,16 +124,53 @@ app.get("/view/:imageName", (req, res) => {
 });
 
 app.post('/create-thumbnails', (req, res) => {
-    gm('/sdcard/DCIM/100RICOH/R0010097.JPG')
-	.resize(200, 100)
-	.noProfile()
-	.write(__dirname + '/public/thumbs/thumb.png', function(err) {
-	    if (!err) console.log('done');
+
+    let thumbArray = [];
+    fs.readdir(ricohImageDir, (err, items) => {
+	items.forEach ((item) => {
+	    if (isImage(item)) {
+		thumbArray.push(item);
+		gm('/sdcard/DCIM/100RICOH/' + item)
+		.resize(200, 100)
+		.noProfile()
+		.write(__dirname + '/public/thumbs/' + item, function(err) {
+		    if (!err) console.log('wrote thumbnail ' + item);
+		});	    
+	    }
 	});
+    });
+
+});
+
+// reduce file size by reducing quality
+
+app.post('/reduce-quality', (req, res) => {
+
+    let thumbArray = [];
+    fs.readdir(ricohImageDir, (err, items) => {
+	items.forEach ((item) => {
+	    if (isImage(item)) {
+		thumbArray.push(item);
+		gm('/sdcard/DCIM/100RICOH/' + item)
+		.quality(30)
+		.noProfile()
+		.write(__dirname + '/public/gallery/' + item, function(err) {
+		    if (!err) console.log('wrote reduced image file size ' + item);
+		});	    
+	    }
+	});
+    });
 
 });
 
 
 app.listen(3000, ()=> {
   console.log("THETA node plug-in running on port 3000");
+});
+
+
+app.post('/show-thumbs', (req, res) => {
+    fs.readdir(thumbDir, (err, items) => {
+	res.render("thumbList", {thumbs: items});
+    });	
 });

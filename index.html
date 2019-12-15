@@ -18,7 +18,18 @@
             </form>
 	    uses filesystem to get file listing. Slow.  Full-sized images are being transferred
             <form action="/create-thumbnails" method="POST" class="pt-3">
-                <button class="btn btn-primary" type="submit" name="state">Create Test Thumb on filesystem</button>
+              <button class="btn btn-primary" type="submit" name="state">Create
+		Thumbnails on filesystem</button>
+            </form>
+            <form action="/show-thumbs" method="POST" class="pt-3">
+              <button class="btn btn-primary" type="submit" name="state">
+		show thumbnails</button>
+            </form>
+            <form action="/reduce-quality" method="POST" class="pt-3">
+              <button class="btn btn-primary" type="submit" name="state">
+		reduce file size of large images</button>
+	      <br>
+	      by reducing image quality
             </form>
 	    
 

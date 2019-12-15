@@ -1,0 +1,24 @@
+<%- include('snippets/header'); %>
+<h1>RICOH THETA Image Files Read from Camera Filesystem</h1>
+
+
+<div class = "row">
+
+      
+  <%      imageNames.forEach((imageName) => {   %>
+  <div class="col-md-3">
+    <a href="/view/<%= imageName %>">
+    <div class="card shadow-sm"> 
+      <img class="card-img-top"  width="90%" src="/100RICOH/<%= imageName %>" >
+      <div class="card-body">
+	<p class="card-title"> <%= imageName %> </p> 
+      </div>
+    </div>
+    </a>
+  </div>
+<%      });   %>
+
+
+  </div>
+<%- include('snippets/footer'); %>
+
