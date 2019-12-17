@@ -171,17 +171,13 @@ app.post('/show-thumbs', (req, res) => {
 
 app.post('/watermark', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
-	items.forEach ((item) => {
-	    if (isImage(item)) {
-		imageArray.push(item);
-		gm('/sdcard/DCIM/100RICOH/' + item)
-		.quality(30)
-		.noProfile()
-		.write(__dirname + '/public/gallery/' + item, function(err) {
+	const item = items[items.length - 1];
+	gm('/sdcard/DCIM/100RICOH/' + item)
+	    .fontSize(300)
+	    .drawText(300, 1000, 'theta360.guide meetup')
+		.write(__dirname + '/public/watermark/' + item, function(err) {
 		    if (!err) console.log('wrote reduced image file size ' + item);
 		});	    
-	    }
-	});
     });
 });
 
