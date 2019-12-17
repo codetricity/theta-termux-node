@@ -1,0 +1,22 @@
+const express = require("express");
+const request = require("request");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.get("/", (req, res)=> {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/", (req, res)=> {
+  request("http://127.0.0.1:8080/osc/info", (error, response, body)=>{
+    console.log(response);
+    res.send(response);
+  });
+});
+
+app.listen(3000, ()=> {
+  console.log("THETA node plug-in running on port 3000");
+});

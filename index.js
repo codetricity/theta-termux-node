@@ -163,14 +163,32 @@ app.post('/reduce-quality', (req, res) => {
 
 });
 
+app.post('/show-thumbs', (req, res) => {
+    fs.readdir(thumbDir, (err, items) => {
+	res.render("thumbList", {thumbs: items});
+    });	
+});
+
+app.post('/watermark', (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	items.forEach ((item) => {
+	    if (isImage(item)) {
+		imageArray.push(item);
+		gm('/sdcard/DCIM/100RICOH/' + item)
+		.quality(30)
+		.noProfile()
+		.write(__dirname + '/public/gallery/' + item, function(err) {
+		    if (!err) console.log('wrote reduced image file size ' + item);
+		});	    
+	    }
+	});
+    });
+});
+
+
 
 app.listen(3000, ()=> {
   console.log("THETA node plug-in running on port 3000");
 });
 
 
-app.post('/show-thumbs', (req, res) => {
-    fs.readdir(thumbDir, (err, items) => {
-	res.render("thumbList", {thumbs: items});
-    });	
-});
