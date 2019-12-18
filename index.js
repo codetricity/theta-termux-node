@@ -11,8 +11,9 @@ const gm = require('gm');
 const app = express();
 
 const ricohImageDir = "/sdcard/DCIM/100RICOH";
-const thumbDir = __dirname + '/public/thumbs';
+const thumbDir = __dirname + '/media/thumbs';
 app.use('/static', express.static(__dirname + '/public'));
+app.use('/media', express.static(__dirname + '/media'));
 app.use('/100RICOH', express.static(ricohImageDir));
 
 const ipAddress = ip.address();
@@ -133,8 +134,9 @@ app.post('/create-thumbnails', (req, res) => {
 		gm('/sdcard/DCIM/100RICOH/' + item)
 		.resize(200, 100)
 		.noProfile()
-		.write(__dirname + '/public/thumbs/' + item, function(err) {
-		    if (!err) console.log('wrote thumbnail ' + item);
+		.write(__dirname + '/media/thumbs/' + item, function(err) {
+		    if (!err) console.log('wrote thumbnail ' + item)
+		    else console.log(err);
 		});	    
 	    }
 	});
@@ -154,7 +156,7 @@ app.post('/reduce-quality', (req, res) => {
 		gm('/sdcard/DCIM/100RICOH/' + item)
 		.quality(30)
 		.noProfile()
-		.write(__dirname + '/public/gallery/' + item, function(err) {
+		.write(__dirname + '/media/gallery/' + item, function(err) {
 		    if (!err) console.log('wrote reduced image file size ' + item);
 		});	    
 	    }
@@ -169,17 +171,38 @@ app.post('/show-thumbs', (req, res) => {
     });	
 });
 
+
 app.post('/watermark', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
-	const item = items[items.length - 1];
+
+	const item = items[items.length -1];
 	gm('/sdcard/DCIM/100RICOH/' + item)
-	    .fontSize(300)
-	    .drawText(300, 1000, 'theta360.guide meetup')
-		.write(__dirname + '/public/watermark/' + item, function(err) {
-		    if (!err) console.log('wrote reduced image file size ' + item);
+	// rounded rectangle x0, y0, x1, y1, wc, hc
+	    .drawRectangle(500, 500, 1000, 1000, 100)
+	// circle x0, y0, x1, y1
+	    .drawEllipse(2000, 500, 300, 300)
+		    .fill("#888")
+		.noProfile()
+		.write(__dirname + '/media/watermark/' + item, function(err) {
+		    if (!err) console.log('wrote watermark ' + item)
+		    else console.log(err);
 		});	    
     });
 });
+
+
+app.post('/paint', (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	const item = items[items.length -1];
+	gm('/sdcard/DCIM/100RICOH/' + item)
+	    .paint(30)
+		.write(__dirname + '/media/paint/' + item, function(err) {
+		    if (!err) console.log('wrote paint ' + item)
+		    else console.log(err);
+		});	    
+    });
+});
+
 
 
 
