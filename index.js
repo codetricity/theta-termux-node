@@ -206,6 +206,18 @@ app.post('/paint', (req, res) => {
     });
 });
 
+app.post('/monochrome', (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	const item = items[items.length -1];
+	gm('/sdcard/DCIM/100RICOH/' + item)
+	    .monochrome()
+		.write(__dirname + '/media/color/' + item, function(err) {
+		    if (!err) console.log('wrote monochrome ' + item)
+		    else console.log(err);
+		});	    
+    });
+});
+
 
 
 

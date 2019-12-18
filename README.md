@@ -1,5 +1,9 @@
 # THETA Termux Node - Run an image server inside your THETA
 
+This is a technology demonstration and not usable in production. The code
+is for education only to learn fundamental concepts about the RICOH THETA
+camera and 360 image processing.
+
 ## Access Image Filesystem Directly
 
 Program running on the camera can access `/sdcard/DCIM/100RICOH/` files directly.
@@ -57,3 +61,4 @@ In the media directory, create these directories:
 * thumbs
 * paint
 * watermark
+* color
