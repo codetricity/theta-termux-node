@@ -172,7 +172,7 @@ app.post('/show-thumbs', (req, res) => {
 });
 
 
-app.post('/watermark', (req, res) => {
+app.post('/drawshapes', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 
 	const item = items[items.length -1];
@@ -181,7 +181,10 @@ app.post('/watermark', (req, res) => {
 	    .drawRectangle(500, 500, 1000, 1000, 100)
 	// circle x0, y0, x1, y1
 	    .drawEllipse(2000, 500, 300, 300)
-		    .fill("#888")
+	    .stroke("red", 20)
+	    .drawLine(2500, 500, 4000, 900)
+	    .fill("#888")
+	
 		.noProfile()
 		.write(__dirname + '/media/watermark/' + item, function(err) {
 		    if (!err) console.log('wrote watermark ' + item)

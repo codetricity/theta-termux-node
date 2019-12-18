@@ -46,3 +46,14 @@ Reduce quality to 30%.
 
     	gm('/sdcard/DCIM/100RICOH/FILENAM.JPG')
     	.quality(30)
+
+## Prior to Use
+
+Create a directory for media.
+
+In the media directory, create these directories:
+
+* gallery
+* thumbs
+* paint
+* watermark
