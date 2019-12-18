@@ -218,6 +218,20 @@ app.post('/monochrome', (req, res) => {
     });
 });
 
+// swirl parameter is the degrees around the center point that the image rotates
+app.post('/fingerpaint', (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	const item = items[items.length -1];
+	gm('/sdcard/DCIM/100RICOH/' + item)
+	    .swirl(180)
+		.write(__dirname + '/media/paint/' + item, function(err) {
+		    if (!err) console.log('wrote fingerpaint ' + item)
+		    else console.log(err);
+		});	    
+    });
+});
+
+
 
 
 
