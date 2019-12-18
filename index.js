@@ -244,6 +244,29 @@ app.post('/charcoal', (req, res) => {
     });
 });
 
+app.post('/negative', (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	const item = items[items.length -1];
+	gm('/sdcard/DCIM/100RICOH/' + item)
+	    .negative()
+		.write(__dirname + '/media/paint/' + item, function(err) {
+		    if (!err) console.log('wrote negative ' + item)
+		    else console.log(err);
+		});	    
+    });
+});
+
+app.post('/edge', (req, res) => {
+    fs.readdir(ricohImageDir, (err, items) => {
+	const item = items[items.length -1];
+	gm('/sdcard/DCIM/100RICOH/' + item)
+	    .edge(30)
+		.write(__dirname + '/media/paint/' + item, function(err) {
+		    if (!err) console.log('wrote edge ' + item)
+		    else console.log(err);
+		});	    
+    });
+});
 
 
 
