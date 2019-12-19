@@ -10,11 +10,9 @@
             <form action="/takePicture" method="POST" class="pt-3">
                 <button class="btn btn-primary" type="submit" name="state">Take Picture</button>
             </form>
-            <form action="/listFiles" method="POST" class="pt-3">
-                <button class="btn btn-primary" type="submit" name="state">List Files AP Mode</button>
-            </form>
-            <form action="/listFilesCL" method="POST" class="pt-3">
-                <button class="btn btn-primary" type="submit" name="state">List Files CL Mode - Full Size Images</button>
+
+	    <form action="/listFilesCL" method="POST" class="pt-3">
+                <button class="btn btn-primary" type="submit" name="state">List Files - Full Size Images (slow)</button>
             </form>
 	    uses filesystem to get file listing. Slow.  Full-sized images are being transferred
             <form action="/create-thumbnails" method="POST" class="pt-3">
@@ -23,7 +21,7 @@
             </form>
             <form action="/show-thumbs" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="state">
-		show thumbnails</button>
+		show thumbnails (Fast)</button>
             </form>
             <form action="/reduce-quality" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="state">
