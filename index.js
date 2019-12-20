@@ -140,6 +140,8 @@ app.post('/drawshapes', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 
 	const item = items[items.length -1];
+	const outputName = 'watermark_' + item;
+	
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	// rounded rectangle x0, y0, x1, y1, wc, hc
 	    .drawRectangle(500, 500, 1000, 1000, 100)
@@ -150,9 +152,20 @@ app.post('/drawshapes', (req, res) => {
 	    .fill("#888")
 	
 		.noProfile()
-		.write(__dirname + '/media/watermark/' + item, function(err) {
-		    if (!err) console.log('wrote watermark ' + item)
-		    else console.log(err);
+		.write(__dirname + '/media/watermark/' + outputName, function(err) {
+		    if (!err) {
+			console.log('wrote oil paint ' + outputName)
+			res.render("processed", {
+			    directory: "watermark/",
+			    imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }	
 		});	    
 
     });
@@ -162,23 +175,62 @@ app.post('/drawshapes', (req, res) => {
 app.post('/paint', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 	const item = items[items.length -1];
+	const outputName = 'oilpaint_' + item;
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	    .paint(30)
-		.write(__dirname + '/media/paint/' + item, function(err) {
-		    if (!err) console.log('wrote paint ' + item)
-		    else console.log(err);
+	    .write(__dirname + '/media/paint/' + outputName, function(err) {
+		    if (!err) {
+			console.log('wrote oil paint ' + outputName)
+			res.render("processed", {
+			    directory: "paint/",
+			    imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }		
+		
 		});	    
     });
 });
 
+app.get('/showpaint', (req, res) => {
+    fs.readdir(__dirname + '/media/paint/', (err, items) => {
+	const item = items[items.length - 1];
+	if (!err) {
+	    res.render("processed", {
+		directory: "paint/",
+		imageName: item
+	    })
+	}
+    });
+    
+});
+
+
 app.post('/monochrome', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 	const item = items[items.length -1];
+	const outputName = 'monochrome_' + item;
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	    .monochrome()
-		.write(__dirname + '/media/color/' + item, function(err) {
-		    if (!err) console.log('wrote monochrome ' + item)
-		    else console.log(err);
+		.write(__dirname + '/media/color/' + outputName, function(err) {
+		    if (!err) {
+			console.log('wrote monochrome ' + outputName)
+			res.render("processed", {
+			    directory: "color/",
+			    imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }
 		});	    
     });
 });
@@ -187,11 +239,23 @@ app.post('/monochrome', (req, res) => {
 app.post('/fingerpaint', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 	const item = items[items.length -1];
+	const outputName = 'fingerpaint_' + item;
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	    .swirl(180)
-		.write(__dirname + '/media/paint/' + item, function(err) {
-		    if (!err) console.log('wrote fingerpaint ' + item)
-		    else console.log(err);
+		.write(__dirname + '/media/paint/' + outputName, function(err) {
+		    if (!err) {
+			console.log('wrote fingerpaint ' + outputName)
+			res.render("processed", {
+			    directory: "paint/",
+			    imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }
 		});	    
     });
 });
@@ -200,11 +264,23 @@ app.post('/fingerpaint', (req, res) => {
 app.post('/charcoal', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 	const item = items[items.length -1];
+	const outputName = 'charcoal_' + item
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	    .charcoal(3)
-		.write(__dirname + '/media/paint/' + item, function(err) {
-		    if (!err) console.log('wrote charcoal ' + item)
-		    else console.log(err);
+		.write(__dirname + '/media/paint/' + outputName, function(err) {
+		    if (!err) {
+			console.log('wrote charcoal ' + outputName)
+			res.render("processed", {
+			    directory: "paint/",
+			    imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }
 		});	    
     });
 });
