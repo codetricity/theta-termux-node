@@ -121,6 +121,7 @@ app.post('/reduce-quality', (req, res) => {
 		});	    
 	    }
 	});
+
     });
 
 });
@@ -153,6 +154,7 @@ app.post('/drawshapes', (req, res) => {
 		    if (!err) console.log('wrote watermark ' + item)
 		    else console.log(err);
 		});	    
+
     });
 });
 
@@ -210,23 +212,49 @@ app.post('/charcoal', (req, res) => {
 app.post('/negative', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 	const item = items[items.length -1];
+	const outputName = 'negative_' + item
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	    .negative()
-		.write(__dirname + '/media/paint/' + item, function(err) {
-		    if (!err) console.log('wrote negative ' + item)
-		    else console.log(err);
-		});	    
+		.write(__dirname + '/media/paint/' + outputName, function(err) {
+		    if (!err) {
+			console.log('wrote negative ' + outputName)
+			res.render("processed", {
+			    directory: "paint/",
+			    imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }
+		});
+
     });
+   
 });
 
 app.post('/edge', (req, res) => {
     fs.readdir(ricohImageDir, (err, items) => {
 	const item = items[items.length -1];
+	const outputName = 'edge_' + item
 	gm('/sdcard/DCIM/100RICOH/' + item)
 	    .edge(30)
-		.write(__dirname + '/media/paint/' + item, function(err) {
-		    if (!err) console.log('wrote edge ' + item)
-		    else console.log(err);
+	    .write(__dirname + '/media/paint/' + outputName, function(err) {
+		if (!err) {
+		    console.log('wrote edge ' + outputName)
+		    res.render("processed", {
+			directory: "paint/",
+			imageName: outputName
+			});
+		    }
+		    else {
+			console.log(err);
+			res.render("error", {
+			    errror: err
+			});
+		    }
 		});	    
     });
 });
