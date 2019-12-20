@@ -7,6 +7,7 @@ const ejs = require('ejs');
 const fs = require('fs');
 const isImage = require('is-image');
 const gm = require('gm');
+const _ = require('lodash');
 
 const app = express();
 
@@ -126,6 +127,9 @@ app.post('/reduce-quality', (req, res) => {
 
 app.post('/show-thumbs', (req, res) => {
     fs.readdir(thumbDir, (err, items) => {
+	_.remove(items, (item) => {
+	    return !isImage(item);
+	});
 	res.render("thumbList", {thumbs: items});
     });	
 });
