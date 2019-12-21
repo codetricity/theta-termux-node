@@ -31,7 +31,9 @@ See these articles:
 
 Access CSS, JavaScript, and HTML snippets.
 
-![Image Listing](doc/images/gui.png)
+![gui](doc/images/gui.png)
+
+![gui2](doc/images/gui2.png)
 
 ## Image Processing with gm
 
