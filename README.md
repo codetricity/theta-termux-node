@@ -1,3 +1,5 @@
+![oppkey node server](doc/images/z1-oled.png)
+
 # THETA Termux Node - Run an image server inside your THETA
 
 This is a technology demonstration and not usable in production. The code
@@ -51,14 +53,4 @@ Reduce quality to 30%.
     	gm('/sdcard/DCIM/100RICOH/FILENAM.JPG')
     	.quality(30)
 
-## Prior to Use
 
-Create a directory for media.
-
-In the media directory, create these directories:
-
-* gallery
-* thumbs
-* paint
-* watermark
-* color
