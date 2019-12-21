@@ -75,6 +75,8 @@
 
 	    <div class="card p-2">
 	      <h5 class="card-title"> Create Oil Painting</h5>
+      	      <img src="/static/icons/oil.png" class="card-img-top">
+
 	      <p class="card-text">
 		did not appear in browsers, but file was processed and saved
 		</p>
@@ -87,10 +89,10 @@
 
    	    <div class="card p-2">
 	      <h5 class="card-title"> Show Oil Painting</h5>
+              <img src="/static/icons/oil.png" class="card-img-top">
 	      <p class="card-text">
 		Immediate display of pre-processed image
 		</p>
-
 	     <form action="showpaint" method="GET" class="pt-3">
 	       <button class="btn btn-primary" type="submit" name="showpaint">
 		 show oil painting
@@ -100,10 +102,10 @@
 
       	    <div class="card p-2">
 	      <h5 class="card-title"> Monochrome</h5>
+              <img src="/static/icons/oil.png" class="card-img-top">
 	      <p class="card-text">
 		30 second response
 		</p>
-
              <form action="/monochrome" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="monochrome">
 		monochrome</button> 
@@ -112,6 +114,7 @@
 
        	    <div class="card p-2">
 	      <h5 class="card-title"> Fingerpaint</h5>
+              <img src="/static/icons/swirl.png" class="card-img-top">
 	      <p class="card-text">
 		Fingerpaint swirl. 7 second response
 		</p>
@@ -121,15 +124,13 @@
 	      <br>
              </form>
 	    </div>
-
-
 	    
        	    <div class="card p-2">
 	      <h5 class="card-title"> Charcoal</h5>
+              <img src="/static/icons/charcoal.png" class="card-img-top">	      
 	      <p class="card-text">
 		10 second response
 		</p>
-
              <form action="/charcoal" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="charcoal">
 		charcoal</button> 
@@ -139,6 +140,7 @@
 
        	    <div class="card p-2">
 	      <h5 class="card-title"> Negative</h5>
+              <img src="/static/icons/negative.png" class="card-img-top">
 	      <p class="card-text">
 		3 second response
 		</p>
@@ -151,10 +153,10 @@
 
 	    <div class="card p-2">
 	      <h5 class="card-title"> Cartoon</h5>
+              <img src="/static/icons/cartoon.png" class="card-img-top">	      
 	      <p class="card-text">
 		May take 3 minutes to process a single Z1 image. Edge detection.
 		</p>
-            	    
              <form action="/edge" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="edge">
 		Cartoon</button> 
@@ -168,6 +170,6 @@
 </div>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/static/js/jquery.min.js" crossorigin="anonymous"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
