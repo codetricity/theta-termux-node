@@ -1,77 +1,166 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Oppkey Node Server for RICOH THETA</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
 
 <body>
 <div class="container">
-        <h1>RICOH THETA Termux GUI with Node and Express</h1>
+        <h1>Oppkey Node Server for RICOH THETA Using Termux</h1>
         <div class="pt-2">
+	  	  <h2> Camera Operation </h2>
+	  <div class="row">
+	    <div class='col-md-3'>
             <form action="/" method="POST">
                 <button class="btn btn-primary" type="submit" name="info">Get Info</button>
             </form>
-            <form action="/takePicture" method="POST" class="pt-3">
+	    </div>
+	   <div class='col-md-3'>
+            <form action="/takePicture" method="POST">
                 <button class="btn btn-primary" type="submit" name="state">Take Picture</button>
             </form>
-
+	    </div>
+	  </div>
+	  <hr>
+	  <h2> File Management </h2>
+	  <div class="row">
+	   <div class='col-md-3'>
 	    <form action="/listFilesCL" method="POST" class="pt-3">
                 <button class="btn btn-primary" type="submit" name="state">List Files - Full Size Images (slow)</button>
             </form>
 	    uses filesystem to get file listing. Slow.  Full-sized images are being transferred
+	   </div>
+	   	   <div class='col-md-3'>
+
             <form action="/create-thumbnails" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="state">Create
 		Thumbnails on filesystem</button>
             </form>
+		   </div>
+		    <div class='col-md-3'>
             <form action="/show-thumbs" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="state">
 		show thumbnails (Fast)</button>
             </form>
+	    </div>
+	    <div class='col-md-3'>
             <form action="/reduce-quality" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="state">
 		reduce file size of large images</button>
-	      <br>
 	      by reducing image quality
             </form>
+	    </div>
+	  </div>
+	  <hr>
+<!--  row   -->
+	  <h2> Artistic Image Processing </h2>
+	  <div class="row">
+	    <div class="card p-2">
+	      <h5 class="card-title">Watermark with Shapes</h5>
+	      <p class="card-text">
+		7 second response
+	      </p>
+
             <form action="/drawshapes" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="drawshapes">
-		watermark with shapes</button> 7 second response
+		Watermark</button>
 	      <br>
             </form>
+	    </div>
 
+	    <div class="card p-2">
+	      <h5 class="card-title"> Create Oil Painting</h5>
+	      <p class="card-text">
+		did not appear in browsers, but file was processed and saved
+		</p>
              <form action="/paint" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="paint">
-		create oil painting</button> did not appear in browsers, but file was processed and saved
+		oil painting</button> 
 	      <br>
              </form>
+	     </div>
+
+   	    <div class="card p-2">
+	      <h5 class="card-title"> Show Oil Painting</h5>
+	      <p class="card-text">
+		Immediate display of pre-processed image
+		</p>
+
 	     <form action="showpaint" method="GET" class="pt-3">
 	       <button class="btn btn-primary" type="submit" name="showpaint">
-		 show most recent oil painting
-		 </button> Immediate display of pre-processed image
-	       </form>
+		 show oil painting
+		 </button> 
+	     </form>
+	    </div>
+
+      	    <div class="card p-2">
+	      <h5 class="card-title"> Monochrome</h5>
+	      <p class="card-text">
+		30 second response
+		</p>
+
              <form action="/monochrome" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="monochrome">
-		monochrome</button> 30 second response
-	      <br>
-            </form>
+		monochrome</button> 
+             </form>
+	    </div>
+
+       	    <div class="card p-2">
+	      <h5 class="card-title"> Fingerpaint</h5>
+	      <p class="card-text">
+		Fingerpaint swirl. 7 second response
+		</p>
              <form action="/fingerpaint" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="fingerpaint">
-		fingerpaint swirl</button> 7 second response
+		fingerpaint </button> 
 	      <br>
-            </form>
+             </form>
+	    </div>
+
+
+	    
+       	    <div class="card p-2">
+	      <h5 class="card-title"> Charcoal</h5>
+	      <p class="card-text">
+		10 second response
+		</p>
+
              <form action="/charcoal" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="charcoal">
-		charcoal</button> 10 second response
-	      <br>
-            </form>
+		charcoal</button> 
+             </form>
+	    </div>
+
+
+       	    <div class="card p-2">
+	      <h5 class="card-title"> Negative</h5>
+	      <p class="card-text">
+		3 second response
+		</p>
              <form action="/negative" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="negative">
-		negative</button> 3 second response
-	      <br>
-            </form>
+		negative</button> 
+             </form>
+	    </div>
+
+
+	    <div class="card p-2">
+	      <h5 class="card-title"> Cartoon</h5>
+	      <p class="card-text">
+		May take 3 minutes to process a single Z1 image. Edge detection.
+		</p>
+            	    
              <form action="/edge" method="POST" class="pt-3">
               <button class="btn btn-primary" type="submit" name="edge">
-		edge</button> May take 3 minutes to process a single Z1 image
+		Cartoon</button> 
 	      <br>
             </form>
 
-
+	     </div>
 
 
         </div>
