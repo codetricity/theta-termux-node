@@ -54,3 +54,29 @@ Reduce quality to 30%.
     	.quality(30)
 
 
+## Autostart Node
+
+Get [Termux:Boot](https://f-droid.org/packages/com.termux.boot/) from F-Droid
+
+Create a new file  `~/.termux/boot/startup` and add add these line:
+
+```bash
+#!/data/data/com.termux/files/usr/bin/sh
+/data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/home/Development/theta-termux-node/index.js
+```
+
+Adjust the path to the location of your index.js file
+
+## .bashrc
+
+```shell
+sshd
+alias l='ls -F'
+alias la='ls -a'
+alias ll='ls -l'
+array=$(ip -4 a | grep inet | grep wlan0 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+(?=\/)')
+echo $array
+am broadcast -a com.theta360.plugin.ACTION_OLED_TEXT_SHOW -e text-middle 'Oppkey Node Server'
+am broadcast -a com.theta360.plugin.ACTION_OLED_TEXT_SHOW -e text-bottom $array
+```
+
