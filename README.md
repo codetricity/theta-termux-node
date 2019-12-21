@@ -38,6 +38,14 @@ Access CSS, JavaScript, and HTML snippets.
 The graphics processing is handled with GraphicsMagick. See
 [gm](https://www.npmjs.com/package/gm) node module for more information.
 
+![Cartoon transform](doc/images/cartoon.png)
+
+![Oil paint transform](doc/images/oil.png)
+
+![Negative transform](doc/images/negative.png)
+
+
+
 ## Image File Size Reduction
 
 | Image Use Case        | File Size | Dimensions  | Compression            |
