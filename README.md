@@ -66,12 +66,14 @@ Reduce quality to 30%.
 
 Get [Termux:Boot](https://f-droid.org/packages/com.termux.boot/) from F-Droid
 
-Create a new file  `~/.termux/boot/startup` and add add these line:
+Create a new file  `~/.termux/boot/startup` and add add these lines:
 
 ```bash
 #!/data/data/com.termux/files/usr/bin/sh
 /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/home/Development/theta-termux-node/index.js
 ```
+
+Make sure you have the full path of `node index.js`.  The node command and the index.js file name need to be on the same path.
 
 Adjust the path to the location of your index.js file
 
